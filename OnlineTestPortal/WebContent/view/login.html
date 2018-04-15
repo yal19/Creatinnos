@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <div class="container loginPage">
+         <div class="row lForm">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                 <div class="card hovercard">
+                    <div class="card-info card-background"> 
+                       <span class="card-title">Creatinnos</span>
+                    </div>
+                 </div>
+                 <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                       <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
+                          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                          <div class="hidden-xs">Login</div>
+                       </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                       <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
+                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                          <div class="hidden-xs">Register</div>
+                       </button>
+                    </div>
+                 </div>
+                 <div class="well">
+                    <div class="tab-content">
+                       <div class="tab-pane fade in active" id="tab1">
+                          <form id="loginForm">
+                             <fieldset>
+                                <div class="form-group">
+                                   <input type="text" id="loginUser" class="form-control" placeholder="Username*">
+                                </div>
+                                <div class="form-group">
+                                   <input type="password" id="loginPw" class="form-control" placeholder="Password*">
+                                </div>
+                                <div id="loginError" class="alert alert-danger" style="display:none;"></div>
+                                <span class="button-checkbox">
+                                <button type="button" class="btn" data-color="info">Remember Me</button>
+                                <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                                <a href="" class="btn btn-link pull-right">Forgot Password?</a>
+                                </span>
+                             </fieldset>
+                          </form>
+                          <hr class="colorgraph">
+                          <div class="row">
+                             <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="button" id="login" class="btn btn-md btn-success btn-block" value="Sign In">
+                             </div>
+                             <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="button" id="writeExam" class="btn btn-md btn-primary btn-block" value="Write Exam">
+                             </div>
+                          </div>
+                       </div>
+                       <div class="tab-pane fade in" id="tab2">
+                          <form id="registrationForm">
+                             <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                      <input type="text" id="regUserName" class="form-control" placeholder="Username*" tabindex="1">
+                                   </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                      <input type="text" id="phone_no" class="form-control" placeholder="Phone Number*" tabindex="2">
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Email Address*" tabindex="3">
+                             </div>
+                             <div class="form-group">
+                                <input type="text" id="company_name" class="form-control" placeholder="Institute/Company Name*" tabindex="4">
+                             </div>
+                             <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                      <input type="password" id="regPw" class="form-control" placeholder="Password*" tabindex="5">
+                                   </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                      <input type="password" id="regPwConfirm" class="form-control" placeholder="Confirm Password*" tabindex="6">
+                                   </div>
+                                </div>
+                             </div>
+                             <div id="regError" class="alert alert-danger" style="display:none;"></div>
+<!--                              <div class="row"> -->
+<!--                                 <div class="col-xs-4 col-sm-3 col-md-3"> -->
+<!--                                    <span class="button-checkbox"> -->
+<!--                                    <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button> -->
+<!--                                    <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1"> -->
+<!--                                    </span> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-xs-8 col-sm-9 col-md-9"> -->
+<!--                                    By clicking <strong class="label label-success">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site. -->
+<!--                                 </div> -->
+<!--                              </div> -->
+                          </form>
+                          <hr class="colorgraph">
+                          <div class="row">
+                             <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="button" id="register" class="btn btn-md btn-success btn-block" value="Register">
+                             </div>
+                             <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="button" id="writeExam" class="btn btn-md btn-primary btn-block" value="Write Exam">
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
