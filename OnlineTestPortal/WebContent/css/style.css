@@ -151,6 +151,10 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+.instArea{
+	margin-bottom:20px;
+}
+
 .timer{
 	float: right;
     padding: 20px;
@@ -160,6 +164,9 @@ body {
 .startBtn{
 	float: right;
     margin: 12px;
+}
+#layoutContainer { 
+	overflow-y: auto;
 }
 #footer {
     padding: 20px;

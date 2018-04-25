@@ -20,9 +20,7 @@ instructionNamespace.getHtmlSuccess = function(response){
 				clearInterval(timer);
 				$("#timer").css({display:'none'});
 				$("#startTest").css({display:'inline'});
-			
 			}
-
 		}
 		
 		$("#startTest").off().click(function(){
@@ -35,6 +33,12 @@ instructionNamespace.getHtmlSuccess = function(response){
 		});
 
 	});
+	
+	//Load Instructions
+	for(var i = 0; i< constants.instructions.length; i++){
+		$('<li><h4>' + constants.instructions[i] + '</h4></li>').appendTo("#addInstructions");
+	}
+	
 	CommonNamespace.stopLoader();
 };
 

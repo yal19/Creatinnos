@@ -6,9 +6,11 @@ CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
 	if(window.location.href.indexOf("#login") > 0){
 		document.title = "Creatinnos | Login";
+		$("#header,#footer").hide();
 		CommonNamespace.ajaxGetRequest("view/login.html", '', '',
 				loginNamespace.getHtmlSuccess, loginNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#instruction") > 0){
+		CommonNamespace.common();
 		document.title = "Creatinnos | Instructions";
 		CommonNamespace.ajaxGetRequest("view/examInstruction.html", '', '',
 				instructionNamespace.getHtmlSuccess, instructionNamespace.getHtmlFailed);
@@ -65,7 +67,7 @@ CommonNamespace.getContainer = function() {
 				updateDisplay();
 				// Inject the icon if applicable
 				if ($button.find('.state-icon').length == 0) {
-					$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+					$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>ï¿½');
 				}
 			}
 			$(".btn-pref .btn").click(function () {
@@ -279,4 +281,11 @@ CommonNamespace.startLoader = function() {
 //Function to stop the loader
 CommonNamespace.stopLoader = function() {
     $(".section-loader").css("display", "none");
+};
+
+//Function to stop the loader
+CommonNamespace.common = function() {
+	var layoutHeight  = $(window).height() - ($("#header").outerHeight() + $("#footer").outerHeight());
+	$("#layoutContainer").height(layoutHeight);
+	$("#header,#footer").show();
 };
