@@ -13,4 +13,10 @@ constants.instructions = [
 		"Each question carry 1 mark, no negative marks.",
 		"DO NOT refresh the page.",
 		"All the best."
+];
+
+constants.ExamInfo = [
+	{ExamName: "Mid Test 1", ExamStartDate: "20-04-2018", ExamEndDate: "21-04-2018", ExamTime: "9:00"},
+	{ExamName: "Mid Test 2", ExamStartDate: "24-04-2018", ExamEndDate: "25-04-2018", ExamTime: "11:00"},
+	{ExamName: "Mid Test 3", ExamStartDate: "25-04-2018", ExamEndDate: "27-04-2018", ExamTime: "10:00"}
 ]

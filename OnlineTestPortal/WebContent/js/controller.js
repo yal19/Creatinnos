@@ -1,6 +1,7 @@
 var CommonNamespace = {};
 var loginNamespace = {};
 var instructionNamespace = {};
+var adminHomeNamespace = {};
 
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
@@ -14,6 +15,11 @@ CommonNamespace.getContainer = function() {
 		document.title = "Creatinnos | Instructions";
 		CommonNamespace.ajaxGetRequest("view/examInstruction.html", '', '',
 				instructionNamespace.getHtmlSuccess, instructionNamespace.getHtmlFailed);
+	}else if(window.location.href.indexOf("#adminHome") > 0){
+		CommonNamespace.common();
+		document.title = "Creatinnos | Home";
+		CommonNamespace.ajaxGetRequest("view/adminHome.html", '', '',
+				adminHomeNamespace.getHtmlSuccess, adminHomeNamespace.getHtmlFailed);
 	}
 	$(function(){
 	    $('.button-checkbox').each(function(){
@@ -78,6 +84,8 @@ CommonNamespace.getContainer = function() {
 			init();
 		});
 	});
+	
+	CommonNamespace.pageEvents();
 };
 
 loginNamespace.getHtmlSuccess = function(response) {
@@ -202,6 +210,11 @@ CommonNamespace.pageEvents = function(){
 	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	    return re.test(String(email).toLowerCase());
 	}
+	
+	$("#logout").off().click(function(){
+		CommonNamespace.changeHref("#login");
+		CommonNamespace.getContainer();
+	});
 };
 
 CommonNamespace.checkLogin = function(userName, password) {

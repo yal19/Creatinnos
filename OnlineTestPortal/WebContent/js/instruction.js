@@ -24,14 +24,7 @@ instructionNamespace.getHtmlSuccess = function(response){
 		}
 		
 		$("#startTest").off().click(function(){
-//			window.location.replace(window.location.origin+"/"+projectName+"/exampage.html");
 		});
-		
-		$("#logout").off().click(function(){
-			CommonNamespace.changeHref("#login");
-			CommonNamespace.getContainer();
-		});
-
 	});
 	
 	//Load Instructions
