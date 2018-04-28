@@ -5,9 +5,9 @@ var adminHomeNamespace = {};
 
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
-	if(window.location.href.indexOf("#login") > 0){
+	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("") > 0){
 		document.title = "Creatinnos | Login";
-		$("#header,#footer").hide();
+		$("#headerSec,#footer").hide();
 		CommonNamespace.ajaxGetRequest("view/login.html", '', '',
 				loginNamespace.getHtmlSuccess, loginNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#instruction") > 0){
@@ -85,6 +85,9 @@ CommonNamespace.getContainer = function() {
 		});
 	});
 	
+	$(window).on('resize', function (){
+		CommonNamespace.common();
+	});
 	CommonNamespace.pageEvents();
 };
 
@@ -298,7 +301,7 @@ CommonNamespace.stopLoader = function() {
 
 //Function to stop the loader
 CommonNamespace.common = function() {
-	var layoutHeight  = $(window).height() - ($("#header").outerHeight() + $("#footer").outerHeight());
+	$("#headerSec,#footer").show();
+	var layoutHeight  = $(window).height() - ($("#headerSec").outerHeight() + $("#footer").outerHeight());
 	$("#layoutContainer").height(layoutHeight);
-	$("#header,#footer").show();
 };

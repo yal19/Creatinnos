@@ -142,14 +142,20 @@ body {
     font-family: BerkshireSwash-Regular;
 }
 .logoff{
-	color: #FFF;
-    font-size: 30px;
-    padding: 8px 14px;
-    cursor:pointer;
+    color: #FFF;
+    font-size: 28px;
+    padding: 10px 10px;
+    cursor: pointer;
 }
-.jumbotron {
-    padding-top: 12px;
-    padding-bottom: 12px;
+.headerBlock{
+	padding-top: 5px;
+    padding-bottom: 5px;
+    background:#ececec;
+    margin-bottom:10px;
+}
+.headerContent{
+	padding: 0px 20px;
+	display:inline-block
 }
 .instArea{
 	margin-bottom:20px;
@@ -163,7 +169,7 @@ body {
 }
 .startBtn{
 	float: right;
-    margin: 12px;
+    margin: 5px 10px;
 }
 #layoutContainer { 
 	overflow-y: auto;
@@ -178,4 +184,53 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+/********************
+******AdminHome******
+*********************/
+.examList{
+    padding: 5px 20px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+.examList:hover{
+	background:#f5f5f5;
+}
+.dashboardSec{
+	margin-bottom:20px;
+}
+.sectionHeading{
+    border-bottom: 2px solid #000;
+    padding: 7px 0px;
+    font-size: 18px;
+}
+.sectionHeading .glyphicons{
+	font-size:16px;
+}
+.sectionHeading input{
+	float: right;
+    width: 40%;
+    height: 27px;
+}
+.progress {
+    margin-bottom: 8px;
+}
+.noPaddingStart{
+	padding:0px 15px 0px 0px;
+}
+
+@media (min-width:240px) and (max-width:700px) {
+	.sectionHeading {
+    font-size: 15px;
+	}
+	
+	.sectionHeading input {
+    width: 44%;
+    height: 22px;
+	}
+
+	#footer {
+    	padding: 12px;
+	}
 }

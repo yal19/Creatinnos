@@ -1,88 +1,78 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 </head>
-
 <body>
-    <div class="container">
-        <div class="col-md-6">
-
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-                <!--Start Row-->
-                <!-- Default panel contents -->
-                <div class="calConnect">
-
-                    <div class="calView" style="display:none;">
-                        <div class="darken small-padding" style="height:52px;">
-                            <div class="initBtns">
-                                <div class="btngroup">
-                                    <button id="month" type="button" class="btn viewbtn active">Month</button>
-                                    <button id="agendaWeek" type="button" class="btn viewbtn">Week</button>
-                                    <button id="agendaDay" type="button" class="btn viewbtn">Day</button>
-                                </div>
-                                <div class="btngroup pull-right">
-                                    <button id="calender-prev" type="button" class="btn"><b class="navs left"></b></button>
-                                    <button id="calender-next" type="button" class="btn"><b class="navs right"></b></button>
-                                </div>
-                            </div>
-                            <div class="backFromEve" style="display:none;">
-                                <button id="backEve" type="button" class="btn" style="float:right;cursor:pointer;">Back</button>
-                                <div class="tooltipping">
-                                    <img src="./img/People.png" id="attendees" style="float:left;cursor:pointer;">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="force-padding">
-                            <div class="initCont">
-                                <h1 class="text-light head" id="selected-day"></h1>
-                                <h3 class="text-light" id="selected-date"></h3>
-                                <div class="events">
-                                    <ul class="list-group" id="eve">
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="contentPanel" style="display:none;">
-                                <h1 class="text-cont" id="subj"></h1>
-                                <h3 class="text-conts" id="timing"></h3>
-                                <h3 class="text-conts" id="locate"></h3>
-                                <h3 class="text-conts" id="MeetContent" style="border-top: 1px solid #000;"></h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id='calendar' class="cals" style="background-color: #eaeaea;"></div>
-                    <div id='scheduleEvent' class="cals" style="background-color: #eaeaea;display:none;padding:20px;overflow-y:scroll;">
-                        <div class="meetRow">
-                            <label class="meetLab">Details</label>
-                            <button id="backSchedule" type="button" class="btn" style="float:right;cursor:pointer;">Back</button>
-                        </div>
-                        <input class="meetInp" id="meetTitle" placeholder="Add a title for the event" />
-                        <input class="meetInp" id="meetLocation" placeholder="Add a location" />
-                        <div class="meetRow">
-                            <label class="meetLab">Start</label>
-                            <input class="meetTimeInp" type="text" id="startDate">
-                            <input class="meetTimeInp" type="text" id="startTime">
-                        </div>
-                        <div class="meetRow">
-                            <label class="meetLab" class="meetLab">End</label>
-                            <input class="meetTimeInp" type="text" id="endDate">
-                            <input class="meetTimeInp" type="text" id="endTime">
-                        </div>
-                        <div class="meetRow">
-                            <label class="meetLab" class="meetLab" style="width:15%;">Attendees : </label>
-                            <select id="attendList"></select>
-                        </div>
-                        <input name="input" type="text" value="" class="jqte-test">
-                    </div>
-                </div>
-            </div>
-            <!--/col-lg-8-->
-        </div>
+    <div class="adminHome">
+	  	<div class="headerBlock">
+		  <h3 class="headerContent" style="padding: 0px 20px;display:inline-block">Dashboard</h3>
+		</div>
+		<div class="container-fluid">
+			<div class="col-md-7 dashboardSec">
+				<div class="sectionHeading">
+					<span class="glyphicon glyphicon-list"></span> 
+					<span> Upcoming Exams</span>
+					<input id="searchUpExams" type="text" placeholder="Search ..." class="form-control"/>
+				</div>
+				<div class="col-md-12">
+					<div class="examList row">
+						<h4>TANCET Entrance Practice</h4>
+						<div class="col-md-6 noPaddingStart">
+							<p>20/04/2018 to 25/04/2018 | 50 Minutes</p>
+						</div>
+						<div class="col-md-6 noPaddingStart">
+							<div class="progress">
+							  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+							    <span class="sr-only">40% Complete (success)</span>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="examList row">
+						<h4>Group - 4 Practice</h4>
+						<div class="col-md-6 noPaddingStart">
+							<p>26/08/2018 to 15/09/2018 | 2 Hours 30 Minutes</p>
+						</div>
+						<div class="col-md-6 noPaddingStart">
+							<div class="progress">
+							  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+							    <span class="sr-only">60% Complete (warning)</span>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="dashboardSec">
+					<div class="sectionHeading">
+						<span class="glyphicon glyphicon-calendar"></span> 
+						<span> Calendar</span>
+					</div>
+					<div id="calendar"></div>
+				</div>
+				<div class="newsSec">
+					<div class="sectionHeading">
+						<span class="glyphicon glyphicon-list-alt"></span> 
+						<span> News & Events</span>
+					</div>
+					<div class="col-md-12 dashboardSec">
+						<div class="examList row">
+							<h5>RRB Practice Exam has been postponded. Exam schedule will be revealed shortly.</h5>
+							<div class="col-md-6 noPaddingStart">
+								<p>Sam Andrew | 28/04/2018</p>
+							</div>
+						</div>
+						<div class="examList row">
+							<h5>80% pass percentage in TANCET Practice Exam</h5>
+							<div class="col-md-6 noPaddingStart">
+								<p>John Smith | 08/04/2018</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </body>
-
 </html>
