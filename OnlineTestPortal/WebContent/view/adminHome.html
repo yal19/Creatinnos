@@ -4,9 +4,6 @@
 </head>
 <body>
     <div class="adminHome">
-	  	<div class="headerBlock">
-		  <h3 class="headerContent" style="padding: 0px 20px;display:inline-block">Dashboard</h3>
-		</div>
 		<div class="container-fluid">
 			<div class="col-md-7 dashboardSec">
 				<div class="sectionHeading">
@@ -14,33 +11,7 @@
 					<span> Upcoming Exams</span>
 					<input id="searchUpExams" type="text" placeholder="Search ..." class="form-control"/>
 				</div>
-				<div class="col-md-12">
-					<div class="examList row">
-						<h4>TANCET Entrance Practice</h4>
-						<div class="col-md-6 noPaddingStart">
-							<p>20/04/2018 to 25/04/2018 | 50 Minutes</p>
-						</div>
-						<div class="col-md-6 noPaddingStart">
-							<div class="progress">
-							  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-							    <span class="sr-only">40% Complete (success)</span>
-							  </div>
-							</div>
-						</div>
-					</div>
-					<div class="examList row">
-						<h4>Group - 4 Practice</h4>
-						<div class="col-md-6 noPaddingStart">
-							<p>26/08/2018 to 15/09/2018 | 2 Hours 30 Minutes</p>
-						</div>
-						<div class="col-md-6 noPaddingStart">
-							<div class="progress">
-							  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-							    <span class="sr-only">60% Complete (warning)</span>
-							  </div>
-							</div>
-						</div>
-					</div>
+				<div class="col-md-12" id="ExamUpcoming">
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -56,19 +27,7 @@
 						<span class="glyphicon glyphicon-list-alt"></span> 
 						<span> News & Events</span>
 					</div>
-					<div class="col-md-12 dashboardSec">
-						<div class="examList row">
-							<h5>RRB Practice Exam has been postponded. Exam schedule will be revealed shortly.</h5>
-							<div class="col-md-6 noPaddingStart">
-								<p>Sam Andrew | 28/04/2018</p>
-							</div>
-						</div>
-						<div class="examList row">
-							<h5>80% pass percentage in TANCET Practice Exam</h5>
-							<div class="col-md-6 noPaddingStart">
-								<p>John Smith | 08/04/2018</p>
-							</div>
-						</div>
+					<div class="col-md-12 dashboardSec" id="newsSec">
 					</div>
 				</div>
 			</div>

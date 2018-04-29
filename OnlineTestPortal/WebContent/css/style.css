@@ -29,7 +29,7 @@ body {
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-	z-index: 1003;
+	z-index: 9999999;
 }
 
 @font-face {
@@ -131,6 +131,17 @@ body {
 /********************
 ******Insruction*****
 *********************/
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #655643;
+}
+.navbar-inverse {
+    background-color: #655643;
+    border-color: #655643;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #feffd4;
+}
 .navbar {
     border-radius: 0px !important;
     margin-bottom:0px;
@@ -138,7 +149,7 @@ body {
 .logo {
     padding:0 5px;
     font-size: 35px;
-    color: #FFF;
+    color: #feffd4;
     font-family: BerkshireSwash-Regular;
 }
 .logoff{
@@ -148,44 +159,35 @@ body {
     cursor: pointer;
 }
 .headerBlock{
-	padding-top: 5px;
-    padding-bottom: 5px;
-    background:#ececec;
-    margin-bottom:10px;
+	background: #80BCA3;
+	height:50px;
+	padding: 10px;
 }
 .headerContent{
-	padding: 0px 20px;
-	display:inline-block
+    display: inline-block;
+    color: #ffffff;
+    font-size: 24px;
 }
 .instArea{
 	margin-bottom:20px;
 }
 
 .timer{
-	float: right;
-    padding: 20px;
+    float: right;
+    padding: 8px;
     font-size: 26px;
-    font-weight:bold;
+    font-weight: bold;
+    color: #FFF;
 }
 .startBtn{
 	float: right;
-    margin: 5px 10px;
 }
 #layoutContainer { 
 	overflow-y: auto;
 }
-#footer {
-    padding: 20px;
-    color: #FFF;
-    background:#222222;
-    font-weight: 600;
-    text-align: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+#mainContent{
+    padding: 10px 0px;
 }
-
 /********************
 ******AdminHome******
 *********************/
@@ -195,15 +197,16 @@ body {
     cursor: pointer;
 }
 .examList:hover{
-	background:#f5f5f5;
+	background:#80bca314;
 }
 .dashboardSec{
 	margin-bottom:20px;
 }
 .sectionHeading{
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #655643;
     padding: 7px 0px;
     font-size: 18px;
+    color: #655643;
 }
 .sectionHeading .glyphicons{
 	font-size:16px;
@@ -219,6 +222,100 @@ body {
 .noPaddingStart{
 	padding:0px 15px 0px 0px;
 }
+.greyed {
+	color: #a29b9b !important;
+}
+.menus{
+	padding: 5px 30px;
+    border-bottom: 1px solid #826c51;
+    cursor: pointer;
+    color: #FFF;
+}
+.menus:hover{
+	background: #ffffff21;
+}
+.menus h4{
+	margin-top: 4px;
+    margin-bottom: 4px;
+}
+.menuList{
+	font-size: 24px;
+	color: #655643;
+	cursor:pointer;
+}
+#menuSec{
+	margin-left:-280px;
+}
+.menuSection {
+    width: 280px;
+    background: #655643;
+    position: absolute;
+    z-index: 9999;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+
+/********************
+*****AddNewExam******
+*********************/
+.formFields{
+    width: 50% !important;
+}
+.dateFields{
+    width: 50% !important;
+}
+.timeFields{
+	    width: 15% !important;
+    display: inline-block;
+}
+.addNewExamSec .row{
+	margin: 10px 0px;
+}
+
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
+}
 
 @media (min-width:240px) and (max-width:700px) {
 	.sectionHeading {
@@ -229,8 +326,23 @@ body {
     width: 44%;
     height: 22px;
 	}
-
+	.examList {
+    padding: 5px 5px;
+    }
+    .addNewExamSec .row {
+    	padding:0px;
+	}
+	.formFields{
+	    width: 45%;
+	    display:inline-block;
+	}
+	.datepicker.dropdown-menu{
+		left:50px !important;
+	}
+	.input-group-addon {
+    	padding: 6px 8px;
+	}
 	#footer {
-    	padding: 12px;
+    	padding: 12px !important;
 	}
 }

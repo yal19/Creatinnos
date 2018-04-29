@@ -6,21 +6,18 @@
       <title>Creatinnos</title>
       <link rel="stylesheet" href="./frameworks/css/bootstrap.min.css">
       <link rel="stylesheet" href="./css/style.css" id="theme_css">
-      <link href="./frameworks/calendar/fullcalendar.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="./frameworks/bootstrap-datepicker3.standalone.min.css">
       <link rel="stylesheet" type="text/css" href="./frameworks/zabuto_calendar.min.css">
 
       <script src="./frameworks/jquery-3.3.1.min.js"></script>
       <script src="./frameworks/js/bootstrap.min.js"></script>
+      <script src="./frameworks/bootstrap-datepicker.min.js"></script>
       <script src="./frameworks/zabuto_calendar.min.js"></script>
       <script src="./js/constants.js"></script>
       <script src="./js/controller.js"></script>
       <script src="./js/instruction.js"></script>
       <script src="./js/adminHome.js"></script>
-      
-      <!--     Calendar -->
- 	<script src="./frameworks/calendar/lib/moment.min.js"></script>
- 	<script src="./frameworks/calendar/fullcalendar.js"></script>
- 	
+      <script src="./js/addNewExam.js"></script>
       <!--[if lt IE 9]>
       <script src="./frameworks/html5shiv.js"></script>
       <![endif]-->
@@ -55,14 +52,25 @@
 				    </div><!-- /.navbar-collapse -->
 		  </div>
 		</nav>
-	  	<div id = "layoutContainer"></div>
-      	<footer id="footer" class=""  style="display:none;">
-			<div class="row">
-				<div class="col-md-12">
-				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2018. Creatinnos. All Rights Reserved.
-				</div>
+		<div class="headerBlock">
+			<span class="glyphicon glyphicon-th menuList" id="sideMenus"></span>
+			<span class="displaycont"></span>
+		</div>
+	  	<div id = "layoutContainer">
+	  		<div class="menuSection" id="menuSec">
+				<div class="menus row"><h4 class="adminHomeMenu"><span class="glyphicon glyphicon-home"></span> Home</h4></div>
+				<div class="menus row"><h4 class="addNewExamMenu"><span class="glyphicon glyphicon-plus"></span> Add New Exam</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-list"></span> Upcoming Exams</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-time"></span> Exam History</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-certificate"></span> View Results</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-pencil"></span> Activity Log</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-education"></span> Manage Candidates</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-user"></span> Manage Admin</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-th-large"></span> Manage Category</h4></div>
+				<div class="menus row"><h4><span class="glyphicon glyphicon-move"></span> Manage News & Events</h4></div>
 			</div>
-		</footer>
+			<div id="mainContent"></div>
+	  	</div>
       <!-- Modal -->
 		<div id="myModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">

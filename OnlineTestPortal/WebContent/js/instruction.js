@@ -1,7 +1,8 @@
 instructionNamespace.getHtmlSuccess = function(response){
-	$('#layoutContainer').empty();
-	$('#layoutContainer').append($(response)[1].outerHTML);
-	var countDownDate = new Date().getTime()+5000;
+	$("#mainContent").empty();
+	$('#mainContent').append($(response)[1].outerHTML);
+	CommonNamespace.common();
+	var countDownDate = new Date().getTime()+3000;
 	$(document).ready(function(){
 		myFunction();
 		var timer=setInterval(function(){myFunction()},1000);
@@ -26,7 +27,9 @@ instructionNamespace.getHtmlSuccess = function(response){
 		$("#startTest").off().click(function(){
 		});
 	});
-	
+	$(".displaycont").empty();
+	$('<span class="headerContent">Instructions</span><span class="timer" id="timer"></span>'+
+	  '<button type="button" class="btn btn-warning startBtn" id ="startTest" style="display:none;">Start Test</button>').appendTo(".displaycont");
 	//Load Instructions
 	for(var i = 0; i< constants.instructions.length; i++){
 		$('<li><h4>' + constants.instructions[i] + '</h4></li>').appendTo("#addInstructions");

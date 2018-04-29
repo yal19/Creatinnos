@@ -16,7 +16,13 @@ constants.instructions = [
 ];
 
 constants.ExamInfo = [
-	{ExamName: "Mid Test 1", ExamStartDate: "20-04-2018", ExamEndDate: "21-04-2018", ExamTime: "9:00"},
-	{ExamName: "Mid Test 2", ExamStartDate: "24-04-2018", ExamEndDate: "25-04-2018", ExamTime: "11:00"},
-	{ExamName: "Mid Test 3", ExamStartDate: "25-04-2018", ExamEndDate: "27-04-2018", ExamTime: "10:00"}
-]
+	{ExamName: "RRB Practice Exam", ExamStartDate: "15/05/2018", ExamEndDate: "20/05/2018", ExamDuration: "1 Hour", progress: 40},
+	{ExamName: "Group - 4 Practice", ExamStartDate: "04/05/2018", ExamEndDate: "10/05/2018", ExamDuration: "2 Hours 30 Minutes", progress: 100},
+	{ExamName: "TANCET Entrance Practice", ExamStartDate: "20/04/2018", ExamEndDate: "21/04/2018", ExamDuration: "50 Minutes", progress: 0}
+];
+
+
+constants.events = [
+    {Event : "RRB Practice Exam has been postponded. Exam schedule will be revealed shortly.", PostedBy: "Sam Andrew", PostedOn : "28/04/2018"},
+    {Event : "80% pass percentage in TANCET Practice Exam", PostedBy: "John Smith", PostedOn : "08/04/2018"}
+];
