@@ -6,20 +6,20 @@ var addNewExamNamespace = {};
 var state = false;
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
-	$(".menus").find('h4').css("color", "#FFF");
-	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("") > 0){
+	$(".menus").find('h4').css("color", "#E9F1F7");
+	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("#") === -1){
 		document.title = "Creatinnos | Login";
 		$("#headerSec,.headerBlock").hide();
 		CommonNamespace.ajaxGetRequest("view/login.html", '', '',
 				loginNamespace.getHtmlSuccess, loginNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#adminHome") > 0){
 		document.title = "Creatinnos | Dashboard";
-		$(".adminHomeMenu").css("color", "#feffd4");
+		$(".adminHomeMenu").css("color", "#e7dfc6");
 		CommonNamespace.ajaxGetRequest("view/adminHome.html", '', '',
 				adminHomeNamespace.getHtmlSuccess, adminHomeNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#addNewExam") > 0){
 		document.title = "Creatinnos | Add New Exam";
-		$(".addNewExamMenu").css("color", "#feffd4");
+		$(".addNewExamMenu").css("color", "#e7dfc6");
 		CommonNamespace.ajaxGetRequest("view/addNewExam.html", '', '',
 				addNewExamNamespace.getHtmlSuccess, addNewExamNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#instructions") > 0){
@@ -98,8 +98,8 @@ CommonNamespace.getContainer = function() {
 };
 
 loginNamespace.getHtmlSuccess = function(response) {
-	$('#layoutContainer').empty();
-	$('#layoutContainer').append($(response)[1].outerHTML);
+	$('#mainContent').empty();
+	$('#mainContent').append($(response)[1].outerHTML);
 	CommonNamespace.stopLoader();
 	CommonNamespace.pageEvents();
 };
@@ -247,8 +247,8 @@ CommonNamespace.pageEvents = function(){
 			CommonNamespace.changeHref("#addNewExam");
 		}
 		state = false;
-		$(this).find('h4').css("color", "#FFF");
-		$(this).css("color", "#feffd4");
+		$(this).find('h4').css("color", "#E9F1F7");
+		$(this).css("color", "#e7dfc6");
 		$("#menuSec").animate({
 			'marginLeft':'-280px'
 		});

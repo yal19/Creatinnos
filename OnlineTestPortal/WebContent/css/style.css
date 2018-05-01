@@ -136,11 +136,11 @@ body {
     background-color: #655643;
 }
 .navbar-inverse {
-    background-color: #655643;
-    border-color: #655643;
+    background-color: #4e3528;
+    border-color: #4e3528;
 }
 .navbar-inverse .navbar-nav>li>a {
-    color: #feffd4;
+    color: #E7DFC6;
 }
 .navbar {
     border-radius: 0px !important;
@@ -149,7 +149,7 @@ body {
 .logo {
     padding:0 5px;
     font-size: 35px;
-    color: #feffd4;
+    color: #E7DFC6;
     font-family: BerkshireSwash-Regular;
 }
 .logoff{
@@ -159,13 +159,13 @@ body {
     cursor: pointer;
 }
 .headerBlock{
-	background: #80BCA3;
+	background: #E7DFC6;
 	height:50px;
 	padding: 10px;
 }
 .headerContent{
     display: inline-block;
-    color: #ffffff;
+    color: #4e3528;
     font-size: 24px;
 }
 .instArea{
@@ -192,7 +192,6 @@ body {
 ******AdminHome******
 *********************/
 .examList{
-    padding: 5px 20px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
@@ -202,34 +201,58 @@ body {
 .dashboardSec{
 	margin-bottom:20px;
 }
+.heading{
+	font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0px;
+}
+.warning{
+	color: #f0ad4e;
+    margin-right: 10px;
+}
+.green{
+	color: #32a741;
+    margin-right: 10px;
+}
+.red{
+	color: #de1515;
+    margin-right: 10px;
+}
 .sectionHeading{
-    border-bottom: 2px solid #655643;
+    border-bottom: 2px solid #131B23;
     padding: 7px 0px;
     font-size: 18px;
-    color: #655643;
+    color: #4e3528;
 }
 .sectionHeading .glyphicons{
 	font-size:16px;
 }
-.sectionHeading input{
+#searchUpExams {
 	float: right;
-    width: 40%;
+    width: 40% !important;
+    height: 27px;
+        border-radius: 0px;
+}
+#searching {
+    float: right;
+    cursor: pointer;
+    width: 25px;
     height: 27px;
 }
 .progress {
     margin-bottom: 8px;
 }
-.noPaddingStart{
-	padding:0px 15px 0px 0px;
+.floatRight{
+	float:right;
 }
 .greyed {
 	color: #a29b9b !important;
 }
 .menus{
 	padding: 5px 30px;
-    border-bottom: 1px solid #826c51;
-    cursor: pointer;
-    color: #FFF;
+	border-bottom: 1px solid #634739;
+	cursor: pointer;
+	color: #FFF;
 }
 .menus:hover{
 	background: #ffffff21;
@@ -240,7 +263,7 @@ body {
 }
 .menuList{
 	font-size: 24px;
-	color: #655643;
+	color: #4e3528;
 	cursor:pointer;
 }
 #menuSec{
@@ -248,7 +271,7 @@ body {
 }
 .menuSection {
     width: 280px;
-    background: #655643;
+    background: #7d5e4e;
     position: absolute;
     z-index: 9999;
     overflow-y:auto;
@@ -322,9 +345,17 @@ body {
     font-size: 15px;
 	}
 	
-	.sectionHeading input {
-    width: 44%;
+	#searchUpExams {
+	float: right;
+    width: 44% !important;
     height: 22px;
+        border-radius: 0px;
+	}
+	#searching {
+	    float: right;
+	    cursor: pointer;
+	    width: 21px;
+	    height: 22px;
 	}
 	.examList {
     padding: 5px 5px;
