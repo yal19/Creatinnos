@@ -7,7 +7,10 @@ var state = false;
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
 	$(".menus").find('h4').css("color", "#E9F1F7");
-	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("#") === -1){
+	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("#") === -1){		
+        if (CommonNamespace.isAvailable(localStorage.getItem("rememberMe")) && !$("#remember").is(':checked')) {
+            $("#remember").trigger('click');
+        }
 		document.title = "Creatinnos | Login";
 		$("#headerSec,.headerBlock").hide();
 		CommonNamespace.ajaxGetRequest("view/login.html", '', '',
@@ -102,6 +105,26 @@ loginNamespace.getHtmlSuccess = function(response) {
 	$('#mainContent').append($(response)[1].outerHTML);
 	CommonNamespace.stopLoader();
 	CommonNamespace.pageEvents();
+};
+
+loginNamespace.encrypt = function(password) {
+    var encryptedString = '';
+    var encrypt = [];
+    for (var i = 0; i < password.length; i++) {
+        var data = password.charCodeAt(i) + 10;
+        encrypt.push(data);
+        encryptedString = encryptedString + "" + data;
+    }
+    localStorage.setItem("encrypt", JSON.stringify(encrypt.reverse()));
+    return encryptedString;
+};
+loginNamespace.decrypt = function() {
+    var encrypt = jsonParse(localStorage.getItem("encrypt")).reverse();
+    var decrypt = '';
+    $.each(encrypt, function(key, value) {
+        decrypt = decrypt + String.fromCharCode(value - 10);
+    });
+    return decrypt;
 };
 
 CommonNamespace.pageEvents = function(){
@@ -257,6 +280,16 @@ CommonNamespace.pageEvents = function(){
 };
 
 CommonNamespace.checkLogin = function(userName, password) {
+	
+    var rememberMe = false;
+    if ($("#remember").is(':checked')) {
+        localStorage.setItem("prev-user-details", username);
+        LoginNamespace.encrypt(password);
+        rememberMe = true;
+    }
+    localStorage.setItem('username', userName);
+    localStorage.setItem('rememberMe', rememberMe);
+    
 	var data = {
 			"userName" : userName,
 			"password" : password
@@ -333,6 +366,15 @@ CommonNamespace.startLoader = function() {
 //Function to stop the loader
 CommonNamespace.stopLoader = function() {
     $(".section-loader").css("display", "none");
+};
+
+CommonNamespace.isAvailable = function(data) {
+    if (data === undefined || data === 'undefined' || data === null || data === 'null' || data === false || data === "false")
+        return false;
+    else if (data === true || data === "true")
+        return true;
+    else
+        return true;
 };
 
 //Function to stop the loader
