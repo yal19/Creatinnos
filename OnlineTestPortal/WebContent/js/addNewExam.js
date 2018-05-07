@@ -10,6 +10,33 @@ addNewExamNamespace.getHtmlSuccess = function(response){
 		 });
 	  });
 	CommonNamespace.stopLoader();
+	
+	$("#addNewInst").off().click(function(){
+		var valid = true;
+		$(".instTextArea").each(function(){
+			if($(this).val() !== ""){
+				if(valid) valid= true;
+			}else{
+				valid = false;
+			}
+		});
+		if(valid){
+			$(".addNewErrors").hide();
+			$('<div class="appendDiv row"><label class="col-md-4 col-xs-6"></label>'+
+					'<textarea class="formFields col-xs-4 form-control instTextArea" rows="2"></textarea>'+
+					'<button class="btn btn-danger btn-xs addRemoveBtn deleteRow"><span class="glyphicon glyphicon-remove"></span></button></div>').appendTo("#instSec");
+		}else{
+			$(".addNewErrors").show();
+			$(".addNewErrors").html("Please add a Instruction.");
+		}
+		
+		$(".deleteRow").off().click(function(){
+			$(".addNewErrors").hide();
+			$(this).parent().remove();
+		});
+	});
+	
+	
 };
 
 addNewExamNamespace.getHtmlFailed = function(){

@@ -7,12 +7,10 @@ var state = false;
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
 	$(".menus").find('h4').css("color", "#E9F1F7");
-	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("#") === -1){		
-        if (CommonNamespace.isAvailable(localStorage.getItem("rememberMe")) && !$("#remember").is(':checked')) {
-            $("#remember").trigger('click');
-        }
+	if(window.location.href.indexOf("#login") > 0 || window.location.href.indexOf("#") === -1){
 		document.title = "Creatinnos | Login";
 		$("#headerSec,.headerBlock").hide();
+		
 		CommonNamespace.ajaxGetRequest("view/login.html", '', '',
 				loginNamespace.getHtmlSuccess, loginNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#adminHome") > 0){
@@ -31,67 +29,6 @@ CommonNamespace.getContainer = function() {
 				instructionNamespace.getHtmlSuccess, instructionNamespace.getHtmlFailed);
 	}
 	$(function(){
-	    $('.button-checkbox').each(function(){
-			var $widget = $(this),
-				$button = $widget.find('button'),
-				$checkbox = $widget.find('input:checkbox'),
-				color = $button.data('color'),
-				settings = {
-						on: {
-							icon: 'glyphicon glyphicon-check'
-						},
-						off: {
-							icon: 'glyphicon glyphicon-unchecked'
-						}
-				};
-
-			$button.on('click', function () {
-				$checkbox.prop('checked', !$checkbox.is(':checked'));
-				$checkbox.triggerHandler('change');
-				updateDisplay();
-			});
-
-			$checkbox.on('change', function () {
-				updateDisplay();
-			});
-
-			function updateDisplay() {
-				var isChecked = $checkbox.is(':checked');
-				// Set the button's state
-				$button.data('state', (isChecked) ? "on" : "off");
-
-				// Set the button's icon
-				$button.find('.state-icon')
-					.removeClass()
-					.addClass('state-icon ' + settings[$button.data('state')].icon);
-
-				// Update the button's color
-				if (isChecked) {
-					$button
-						.removeClass('btn-default')
-						.addClass('btn-' + color + ' active');
-				}
-				else
-				{
-					$button
-						.removeClass('btn-' + color + ' active')
-						.addClass('btn-default');
-				}
-			}
-			function init() {
-				updateDisplay();
-				// Inject the icon if applicable
-				if ($button.find('.state-icon').length == 0) {
-					$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>�');
-				}
-			}
-			$(".btn-pref .btn").click(function () {
-			    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-			    // $(".tab").addClass("active"); // instead of this do the below 
-			    $(this).removeClass("btn-default").addClass("btn-primary");   
-			});
-			init();
-		});
 	});
 	
 	$(window).on('resize', function (){
@@ -103,28 +40,15 @@ CommonNamespace.getContainer = function() {
 loginNamespace.getHtmlSuccess = function(response) {
 	$('#mainContent').empty();
 	$('#mainContent').append($(response)[1].outerHTML);
+	if (CommonNamespace.isAvailable(localStorage.getItem("CTS_rememberMe")) && !$("#remember").is(':checked')) {
+		  $("#remember").trigger('click');
+		  $("#loginUser").val(localStorage.getItem('CTS_username'));
+		  $("#loginPw").val(CommonNamespace.decrypt());
+	}else{
+		localStorage.removeItem('encrypt');
+	}
 	CommonNamespace.stopLoader();
 	CommonNamespace.pageEvents();
-};
-
-loginNamespace.encrypt = function(password) {
-    var encryptedString = '';
-    var encrypt = [];
-    for (var i = 0; i < password.length; i++) {
-        var data = password.charCodeAt(i) + 10;
-        encrypt.push(data);
-        encryptedString = encryptedString + "" + data;
-    }
-    localStorage.setItem("encrypt", JSON.stringify(encrypt.reverse()));
-    return encryptedString;
-};
-loginNamespace.decrypt = function() {
-    var encrypt = jsonParse(localStorage.getItem("encrypt")).reverse();
-    var decrypt = '';
-    $.each(encrypt, function(key, value) {
-        decrypt = decrypt + String.fromCharCode(value - 10);
-    });
-    return decrypt;
 };
 
 CommonNamespace.pageEvents = function(){
@@ -244,6 +168,10 @@ CommonNamespace.pageEvents = function(){
 	}
 	
 	$("#logout").off().click(function(){
+		state = false;
+		$("#menuSec").animate({
+			'marginLeft':'-280px'
+		});
 		CommonNamespace.changeHref("#login");
 		CommonNamespace.getContainer();
 	});
@@ -277,23 +205,30 @@ CommonNamespace.pageEvents = function(){
 		});
 		CommonNamespace.getContainer();
 	});
+	
+	$("#forgotPW").off().click(function(){
+		$(".modal-body").empty();
+		$(".modal-title").text("Forgot Password");
+		$('<div class="row"><div class="col-md-12"><input type="text" class="form-control formFields col-md-10" id="forgotPwEmail" placeholder = "Enter your Email id">'+
+				'<button class="btn btn-success col-md-2" style="margin:0px 10px;" id="sendForgotPwReq">Submit</button></div></div>').appendTo(".modal-body");
+		$("#myModal").modal('show');
+	});
 };
 
 CommonNamespace.checkLogin = function(userName, password) {
-	
-    var rememberMe = false;
-    if ($("#remember").is(':checked')) {
-        localStorage.setItem("prev-user-details", username);
-        LoginNamespace.encrypt(password);
-        rememberMe = true;
-    }
-    localStorage.setItem('username', userName);
-    localStorage.setItem('rememberMe', rememberMe);
-    
 	var data = {
 			"userName" : userName,
 			"password" : password
 	};
+	
+    var rememberMe = false;
+    if ($("#remember").is(':checked')) {
+        CommonNamespace.encrypt(password);
+        rememberMe = true;
+    }
+    localStorage.setItem('CTS_username', userName);
+    localStorage.setItem('CTS_rememberMe', rememberMe);
+	
 	$.ajaxSetup({
         cache: false
     });
@@ -306,6 +241,7 @@ CommonNamespace.checkLogin = function(userName, password) {
         success: function(response){
         	if(response.ResponseMessage == "Login Success"){
     			$("#loginError").hide();
+    			localStorage.setItem("CTS_username",userName.substring(userName.substring(0).toUpperCase(), userName.length));
     			CommonNamespace.changeHref("#adminHome");
     			CommonNamespace.getContainer();
     		}else{
@@ -354,6 +290,33 @@ CommonNamespace.ajaxPostRequest = function(requestUrl, contentType, data, dataTy
     });
 };
 
+CommonNamespace.encrypt = function(password) {
+    var encryptedString = '';
+    var encrypt = [];
+    for (var i = 0; i < password.length; i++) {
+        var data = password.charCodeAt(i) + 10;
+     encrypt.push(data);
+        encryptedString = encryptedString + "" + data;
+    }
+    localStorage.setItem("encrypt", JSON.stringify(encrypt.reverse()));
+    return encryptedString;
+};
+CommonNamespace.decrypt = function() {
+    var encrypt = JSON.parse(localStorage.getItem("encrypt")).reverse();
+    var decrypt = '';
+    $.each(encrypt, function(key, value) {
+        decrypt = decrypt + String.fromCharCode(value - 10);
+    });
+    return decrypt;
+};
+CommonNamespace.isAvailable = function(data) {
+   if (data === undefined || data === 'undefined' || data === null || data === 'null' || data === false || data === "false")
+	   return false;
+   else if (data === true || data === "true")
+       return true;
+   else
+       return true;
+};
 //change Href
 CommonNamespace.changeHref = function(pageHash) {
     window.location.hash = pageHash;
@@ -368,17 +331,10 @@ CommonNamespace.stopLoader = function() {
     $(".section-loader").css("display", "none");
 };
 
-CommonNamespace.isAvailable = function(data) {
-    if (data === undefined || data === 'undefined' || data === null || data === 'null' || data === false || data === "false")
-        return false;
-    else if (data === true || data === "true")
-        return true;
-    else
-        return true;
-};
-
 //Function to stop the loader
 CommonNamespace.common = function() {
+	$("#userId").text(localStorage.getItem("CTS_username").toUpperCase());
+	$('<span class="caret"></span>').appendTo("#userId");
 	$("#headerSec,.headerBlock").show();
 	var layoutHeight  = $(window).height() - ($("#headerSec").outerHeight() + $(".headerBlock").outerHeight());
 	$("#layoutContainer").height(layoutHeight);

@@ -2,28 +2,33 @@
 <html>
 	<body>
 		<div class="addNewExamSec">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newCategory">Category Name</label>
-					<select class="col-md-8 col-xs-6 formFields form-control" id="newCategory">
-					 </select>
+		<div class="col-md-12">
+			<div class="alert alert-danger addNewErrors" style="display:none"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newCategory">Category Name</label>
+						<select class="col-md-8 col-xs-6 formFields form-control" id="newCategory">
+						 </select>
+					 </div>
+					 <div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newSubcategory">Sub Category Name</label>
+						<select class="col-md-8 col-xs-6 formFields form-control" id="newSubcategory">
+						 </select>
+					 </div>
 				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newSubcategory">Sub Category Name</label>
-					<select class="col-md-8 col-xs-6 formFields form-control" id="newSubcategory">
-					 </select>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newSubject">Subject</label>
+						<select class="col-md-8 col-xs-6 formFields form-control" id="newSubject">
+						 </select>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newExamName">Exam Name</label>
+						<input type="text" class="formFields col-xs-6 form-control" id="newExamName"/>
+					</div>
 				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newSubject">Subject</label>
-					<select class="col-md-8 col-xs-6 formFields form-control" id="newSubject">
-					 </select>
-				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newExamName">Exam Name</label>
-					<input type="text" class="formFields col-xs-6 form-control" id="newExamName"/>
-				</div>
-				<div class="row col-md-12">
+				<div class="row">
+					<div class="col-md-6">
 					<label class="col-md-4 col-xs-6" for="newExamDate">Exam Date</label>
 					<div class="input-group dateFields date" data-provide="datepicker">
 					    <input type="text" class="form-control"  data-date-format="dd/mm/yyyy" id="newExamDate">
@@ -31,39 +36,48 @@
 					        <span class="glyphicon glyphicon-th"></span>
 					    </div>
 					</div>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newExamHours">Exam Duration</label>
+						<input type="number" class="timeFields form-control" id="newExamHours" placeholder="Hours" min="0" max="4"/>
+						<span> : </span>
+						<input type="number" class="timeFields form-control" id="newExamMin" placeholder="Minutes" min="0" max="50"/>
+					</div>
 				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newExamHours">Exam Duration</label>
-					<input type="number" class="timeFields form-control" id="newExamHours" placeholder="Hours" min="0" max="4"/>
-					<span> : </span>
-					<input type="number" class="timeFields form-control" id="newExamMin" placeholder="Minutes" min="0" max="50"/>
-				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newPassPercent">Pass Percentage</label>
-					<input type="text" class="formFields col-xs-6 form-control" id="newPassPercent"/>
-				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newExamName">Negative Marks</label>
-                     <div class="material-switch">
-                         <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
-                         <label for="someSwitchOptionSuccess" class="label-success"></label>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newPassPercent">Pass Percentage</label>
+						<input type="text" class="formFields col-xs-6 form-control" id="newPassPercent"/>
+					</div>
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newExamName">Negative Marks</label>
+	                     <div class="material-switch">
+	                         <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+	                         <label for="someSwitchOptionSuccess" class="label-success"></label>
+	                     </div>
                      </div>
 				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newCandidate">Candidate Type</label>
-					<select class="col-md-8 col-xs-6 formFields form-control" id="newCandidate">
-					 </select>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-md-4 col-xs-6" for="newCandidate">Candidate Type</label>
+						<select class="col-md-8 col-xs-6 formFields form-control" id="newCandidate">
+						 </select>
+					</div>
+					<div class="col-md-6">
+						<div id="instSec">
+						<div class="row appendDiv">
+							<label class="col-md-4 col-xs-6" for="newCandidate">Instruction</label>
+							<textarea class="formFields col-xs-4 form-control instTextArea" rows="2"></textarea>
+							<button class="btn btn-success btn-xs addRemoveBtn" id="addNewInst"><span class="glyphicon glyphicon-plus"></span></button>
+						</div>
+						</div>
+					</div>
 				</div>
-				<div class="row col-md-12">
-					<label class="col-md-4 col-xs-6" for="newCandidate">Instruction</label>
-					<textarea id="instruction" class="formFields col-xs-6 form-control" rows="4"></textarea>
-				</div>
-				<div class="row col-md-12 text-center">
+				<div class="row col-md-6">
 					<button type="button" id="newReset" style="margin-right: 20px;" class="btn btn-warning">Reset</button>
 					<button type="button" id="newReset" class="btn btn-success">Add New Exam</button>
 				</div>
 			</div>
-			<div class="col-md-6"></div>
-		</div>
+			</div>
 	</body>
 </html>

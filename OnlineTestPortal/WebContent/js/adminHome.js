@@ -12,7 +12,7 @@ adminHomeNamespace.loadContents = function(){
 	$('<span class="headerContent">Dashboard</span>'+
 		'<button class="btn btn-success startBtn" id="addNewExam">Add New Exam</button>').appendTo(".displaycont");
 	adminHomeNamespace.loadExamList();
-	if(constants.ExamInfo.length > 0){
+	if(constants.events.length > 0){
 		for(var j=0; j < constants.events.length ; j++) {
 			$('<div class="examList row">'+
 					'<h5>' + constants.events[j].Event + '</h5>'+
@@ -34,7 +34,7 @@ adminHomeNamespace.loadExamList = function(){
 			var examAvailability = '<div class="examList row">';
 			var progressClass = "";
 			var symbolTitle = "";
-			adminHomeNamespace.getDates(eventData,constants.ExamInfo[i].ExamStartDate,constants.ExamInfo[i].ExamEndDate);
+			adminHomeNamespace.getDates(eventData,constants.ExamInfo[i].ExamStartDate,constants.ExamInfo[i].ExamEndDate,constants.ExamInfo[i].ExamName,constants.ExamInfo[i].ExamDuration);
 			if(constants.ExamInfo[i].progress === "Y"){
 				progressClass = "glyphicon glyphicon-ok-circle green";
 				symbolTitle = "Completed";
@@ -55,7 +55,7 @@ adminHomeNamespace.loadExamList = function(){
 			$(examCont).appendTo("#ExamUpcoming");
 		};
 	}else{
-		$('<h5 style="text-align:center;">No Data Available!</h5>').appendTo("#ExamUpcoming");
+		$('<h5 style="text-align:center;"  class="noData">No Data Available!</h5>').appendTo("#ExamUpcoming");
 	}
 	
 
@@ -64,13 +64,50 @@ adminHomeNamespace.loadExamList = function(){
 		$("#calendar").zabuto_calendar({
 			 today: true,
 			data: eventData,
-			 modal: true
+			 modal: true,
+			 action: function () {
+	                return adminHomeNamespace.myDateFunction(this.id, false, eventData);
+	            },
+			 legend: [
+		                {type: "text", label: "New Exam Starts", badge: "00"},
+		                {type: "block", label: "Exam Scheduled"}
+		            ]
 		});
 	});
 
 };
 
-adminHomeNamespace.getDates = function(eventData,startDate, stopDate) {
+adminHomeNamespace.myDateFunction = function(id, fromModal, eventData) {
+        if (fromModal) {
+        	$("#myModal").modal('hide');
+        }
+        var arr = [];
+        $(".modal-body").empty();
+        var date = $("#" + id).data("date");
+        arr = jQuery.grep(eventData, function(a,i) {
+        	if(a.date === date) {
+        		return a;
+        	}
+        });
+        $(".modal-title").text("Exam(s) on " + adminHomeNamespace.formatEventsCalDate(date,"disp"));
+        var unique = arr.filter(function(elem, index, self) {
+            return index === self.indexOf(elem);
+        });
+        for(var i=0;i<unique.length;i++){
+        	var eleData = $('<div class="examList row" style="padding: 0px 10px;">'+
+        			'<h5>'+ unique[i].name +' | '+ unique[i].duration +'</h5>'+
+        			'</div>');
+        	$(eleData).appendTo(".modal-body");
+        }
+        var hasEvent = $("#" + id).data("hasEvent");
+        if (!hasEvent && !fromModal) {
+            return false;
+        }
+    $("#myModal").modal('show');
+};
+	
+
+adminHomeNamespace.getDates = function(eventData,startDate, stopDate, examName, examDuration) {
     var dt = new Date(startDate);
     var edt = new Date(stopDate);
     while (dt <= edt) {
@@ -84,6 +121,8 @@ adminHomeNamespace.getDates = function(eventData,startDate, stopDate) {
     	var eventObj = {
     			date : formatedDate,
     			badge : badgestate,
+    			name : examName,
+    			duration : examDuration
     	};
     	eventData.push(eventObj);
         dt.setDate(dt.getDate() + 1);
@@ -115,16 +154,6 @@ adminHomeNamespace.pageEvents = function(){
 	
 	$("#searchUpExams").off().keyup(function(e) {
         if ($("#searchUpExams").val() != "") {
-            if (e.keyCode === 13) {
-                $("#searching").trigger("click");
-            }
-        } else {
-        	adminHomeNamespace.loadExamList();
-        }
-    });
-
-    $("#searching").off().click(function(e) {
-        if ($("#searchUpExams").val() != "") {
             var val = $.trim($("#searchUpExams").val()).replace(/ +/g, ' ').toLowerCase();
             var $rows = $("#ExamUpcoming").find(".examList");
             $rows.filter(function(i, v) {
@@ -135,13 +164,18 @@ adminHomeNamespace.pageEvents = function(){
                     $(this).hide();
                 }
             });
-            if ($("#ExamUpcoming").find(".examList").length === 0) {
-            	$('<h5 style="text-align:center;">No Data Available!</h5>').appendTo("#ExamUpcoming");
+            if ($("#ExamUpcoming").children('div:visible').length === 0) {
+            	if(!$("#ExamUpcoming").children().hasClass("noData")){
+            		$('<h5 style="text-align:center;" class="noData">No Data Available!</h5>').appendTo("#ExamUpcoming");
+            	}
+            }else{
+            	$("#ExamUpcoming .noData").remove();
             }
         } else {
         	adminHomeNamespace.loadExamList();
         }
     });
+
 };
 
 adminHomeNamespace.getHtmlFailed = function(){
