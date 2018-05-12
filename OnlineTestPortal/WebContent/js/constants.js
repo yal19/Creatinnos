@@ -27,3 +27,5 @@ constants.events = [
     {Event : "RRB Practice Exam has been postponded. Exam schedule will be revealed shortly.", PostedBy: "Sam Andrew", PostedOn : "28/04/2018"},
     {Event : "80% pass percentage in TANCET Practice Exam", PostedBy: "John Smith", PostedOn : "08/04/2018"}
 ];
+
+constants.questCate = ["Analytical", "Logical", "Reasoning"];

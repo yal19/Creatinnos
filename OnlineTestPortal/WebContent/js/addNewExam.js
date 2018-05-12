@@ -3,14 +3,17 @@ addNewExamNamespace.getHtmlSuccess = function(response){
 	$('#mainContent').append($(response)[1].outerHTML);
 	CommonNamespace.common();
 	$(".displaycont").empty();
-	$('<span class="headerContent">Add New Exam</span><span class="timer" id="timer"></span>').appendTo(".displaycont");
+	$('<span class="headerContent">Add New Exam</span>').appendTo(".displaycont");
 	 $(function () {
 		 $('.datepicker').datepicker({
 			 format: 'DD/MM/YYYY'
 		 });
 	  });
 	CommonNamespace.stopLoader();
-	
+	addNewExamNamespace.pageEvents();
+};
+
+addNewExamNamespace.pageEvents = function(){
 	$("#addNewInst").off().click(function(){
 		var valid = true;
 		$(".instTextArea").each(function(){
@@ -36,7 +39,10 @@ addNewExamNamespace.getHtmlSuccess = function(response){
 		});
 	});
 	
-	
+	$("#addNewExamination").off().click(function(){
+		CommonNamespace.changeHref("#questions");
+		CommonNamespace.getContainer();
+	});
 };
 
 addNewExamNamespace.getHtmlFailed = function(){

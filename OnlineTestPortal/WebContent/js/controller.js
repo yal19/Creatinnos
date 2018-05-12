@@ -3,6 +3,7 @@ var loginNamespace = {};
 var instructionNamespace = {};
 var adminHomeNamespace = {};
 var addNewExamNamespace = {};
+var questionsNamespace = {};
 var state = false;
 CommonNamespace.getContainer = function() {
 	CommonNamespace.startLoader();
@@ -23,12 +24,21 @@ CommonNamespace.getContainer = function() {
 		$(".addNewExamMenu").css("color", "#e7dfc6");
 		CommonNamespace.ajaxGetRequest("view/addNewExam.html", '', '',
 				addNewExamNamespace.getHtmlSuccess, addNewExamNamespace.getHtmlFailed);
+	}else if(window.location.href.indexOf("#questions") > 0){
+		document.title = "Creatinnos | Add Questions";
+		$(".addNewExamMenu").css("color", "#e7dfc6");
+		CommonNamespace.ajaxGetRequest("view/questions.html", '', '',
+				questionsNamespace.getHtmlSuccess, questionsNamespace.getHtmlFailed);
 	}else if(window.location.href.indexOf("#instructions") > 0){
 		document.title = "Creatinnos | Instructions";
 		CommonNamespace.ajaxGetRequest("view/examInstruction.html", '', '',
 				instructionNamespace.getHtmlSuccess, instructionNamespace.getHtmlFailed);
 	}
 	$(function(){
+		$(".btn-pref .btn").click(function () {
+		    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+		    $(this).removeClass("btn-default").addClass("btn-primary");   
+		});
 	});
 	
 	$(window).on('resize', function (){
