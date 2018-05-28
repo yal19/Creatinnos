@@ -28,65 +28,7 @@ questionsNamespace.getHtmlSuccess = function(response){
 };
 
 questionsNamespace.pageEvents = function(){
-	$("#addQuestTemplates").off().click(function(){
-		var category = $("#cateQuery").val();
-		var questType = $("#questType :selected").val();
-		var questTypeTxt = $("#questType :selected").text();
-		var tempCount = $("#newQuestCount").val();
-		if(category !== "" && questType !== "" && tempCount !== ""){
-			$(".addQuestErrors").hide();
-			$("#saveNewQuest").prop("disabled",false);
-			if(questType === "single" || questType === "multiple") {
-				for(var i=0; i<tempCount; i++){
-			       $('<fieldset class="questBlock">'+
-			        	'<legend><span class="glyphicon glyphicon-remove-sign delQuest"></span> Question : '+ category +' - '+questTypeTxt+'</legend>'+
-				        '<div class="row form-group">'+
-			        		'<textarea class="form-control question" rows="2" placeholder="Question"></textarea>'+
-				        '</div>'+
-				        '<div class="row">'+
-					        '<div class="col-md-6">'+
-				        		'<label class="col-md-2" for="newQuestCount">Option 1 : </label>'+
-				        		'<input type="text" class="questfields col-md-10 form-control option1">'+
-					       '</div>'+
-					        '<div class="col-md-6">'+
-				        		'<label class="col-md-2" for="newQuestCount">Option 2 : </label>'+
-				        		'<input type="text" class="questfields col-md-10 form-control option2">'+
-					        '</div>'+
-					    '</div>'+
-					    '<div class="row">'+
-					        '<div class="col-md-6">'+
-				        		'<label class="col-md-2" for="newQuestCount">Option 3 : </label>'+
-				        		'<input type="text" class="questfields col-md-10 form-control option3">'+
-					        '</div>'+
-					        '<div class="col-md-6">'+
-				        		'<label class="col-md-2" for="newQuestCount">Option 4 : </label>'+
-				        		'<input type="text" class="questfields col-md-10 form-control option4">'+
-					        '</div>'+
-					    '</div>'+
-			        '</fieldset>').appendTo("#questContainer");
-				}
-			}else if(questType === "boolean" || questType === "desc"){
-				for(var j=0; j<tempCount; j++){
-					$('<fieldset class="questBlock">'+
-				        	'<legend><span class="glyphicon glyphicon-remove-sign delQuest"></span> Question : '+ category +' - '+questTypeTxt+'</legend>'+
-					        '<div class="row form-group">'+
-				        		'<textarea class="form-control question" rows="2" placeholder="Question"></textarea>'+
-					        '</div>'+
-				        '</fieldset>').appendTo("#questContainer");
-				}
-			}
-		}else{
-			$(".addQuestErrors").text("Please fill all the fields");
-			$(".addQuestErrors").show();
-		}
-		
-		$(".delQuest").off().click(function(){
-			$(this).parent().parent().remove();
-			if($("#questContainer").children().length === 0){
-				$("#saveNewQuest").prop("disabled",true);
-			}
-		});
-	});
+
 	
 };
 

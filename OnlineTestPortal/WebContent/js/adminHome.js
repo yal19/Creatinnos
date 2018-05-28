@@ -30,11 +30,21 @@ adminHomeNamespace.loadExamList = function(){
 	var eventData = [];
 	if(constants.ExamInfo.length > 0){
 		for(var i=0; i < constants.ExamInfo.length ; i++) {
-			var examDate = adminHomeNamespace.formatEventsCalDate(constants.ExamInfo[i].ExamStartDate,"disp") + " to " + adminHomeNamespace.formatEventsCalDate(constants.ExamInfo[i].ExamEndDate,"disp") + " | " + constants.ExamInfo[i].ExamDuration;
-			var examAvailability = '<div class="examList row">';
+			var duration = "";
+			if(constants.ExamInfo[i].ExamDurationHours !== "0" && constants.ExamInfo[i].ExamDurationMin !== "0"){
+				duration = constants.ExamInfo[i].ExamDurationHours + " Hour(s) " + constants.ExamInfo[i].ExamDurationMin + " Minutes";
+			}else{
+				if(constants.ExamInfo[i].ExamDurationHours !== "0"){
+					duration = constants.ExamInfo[i].ExamDurationHours + " Hour(s)";
+				}else{
+					duration = constants.ExamInfo[i].ExamDurationMin + " Minutes";
+				}
+			}
+			var examDate = CommonNamespace.formatEventsCalDate(constants.ExamInfo[i].ExamStartDate,"disp") + " to " + CommonNamespace.formatEventsCalDate(constants.ExamInfo[i].ExamEndDate,"disp") + " | " + duration;
+			var examAvailability = '<div class="examList row" id=' + constants.ExamInfo[i].ExamId+ '>';
 			var progressClass = "";
 			var symbolTitle = "";
-			adminHomeNamespace.getDates(eventData,constants.ExamInfo[i].ExamStartDate,constants.ExamInfo[i].ExamEndDate,constants.ExamInfo[i].ExamName,constants.ExamInfo[i].ExamDuration);
+			adminHomeNamespace.getDates(eventData,constants.ExamInfo[i].ExamStartDate,constants.ExamInfo[i].ExamEndDate,constants.ExamInfo[i].ExamName,duration);
 			if(constants.ExamInfo[i].progress === "Y"){
 				progressClass = "glyphicon glyphicon-ok-circle green";
 				symbolTitle = "Completed";
@@ -89,7 +99,7 @@ adminHomeNamespace.myDateFunction = function(id, fromModal, eventData) {
         		return a;
         	}
         });
-        $(".modal-title").text("Exam(s) on " + adminHomeNamespace.formatEventsCalDate(date,"disp"));
+        $(".modal-title").text("Exam(s) on " + CommonNamespace.formatEventsCalDate(date,"disp"));
         var unique = arr.filter(function(elem, index, self) {
             return index === self.indexOf(elem);
         });
@@ -111,7 +121,7 @@ adminHomeNamespace.getDates = function(eventData,startDate, stopDate, examName, 
     var dt = new Date(startDate);
     var edt = new Date(stopDate);
     while (dt <= edt) {
-    	var formatedDate = adminHomeNamespace.formatEventsCalDate(dt,"events");
+    	var formatedDate = CommonNamespace.formatEventsCalDate(dt,"events");
     	var badgestate = "";
     	if(formatedDate === startDate){
     		badgestate = true;
@@ -130,24 +140,10 @@ adminHomeNamespace.getDates = function(eventData,startDate, stopDate, examName, 
     return eventData;
 };
 
-adminHomeNamespace.formatEventsCalDate = function(date,mode){
-	 var d = new Date(date),
-     month = '' + (d.getMonth() + 1),
-     day = '' + d.getDate(),
-     year = d.getFullYear();
-
-	 if (month.length < 2) month = '0' + month;
-	 if (day.length < 2) day = '0' + day;
-	
-	 if(mode === "disp"){
-		 return [day, month, year].join('/');
-	 }else{
-		 return [year, month, day].join('-');
-	 }
-};
 
 adminHomeNamespace.pageEvents = function(){
 	$("#addNewExam").off().click(function(){
+		localStorage.setItem("CRT_AddNew", "new");
 		CommonNamespace.changeHref("#addNewExam");
 		CommonNamespace.getContainer();
 	});
@@ -175,6 +171,13 @@ adminHomeNamespace.pageEvents = function(){
         	adminHomeNamespace.loadExamList();
         }
     });
+	
+	$("#ExamUpcoming .examList").off().click(function(){
+		localStorage.setItem("CRT_AddNew", "edit");
+		localStorage.setItem("CRT_ExamID", $(this).attr('id'));
+		CommonNamespace.changeHref("#addNewExam");
+		CommonNamespace.getContainer();
+	});
 
 };
 

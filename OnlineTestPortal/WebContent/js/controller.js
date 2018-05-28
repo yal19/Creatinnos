@@ -206,6 +206,7 @@ CommonNamespace.pageEvents = function(){
 			CommonNamespace.changeHref("#adminHome");
 		}else if(selectedMenu === "Add New Exam") {
 			CommonNamespace.changeHref("#addNewExam");
+			localStorage.setItem("CRT_AddNew", "new");
 		}
 		state = false;
 		$(this).find('h4').css("color", "#E9F1F7");
@@ -266,6 +267,23 @@ CommonNamespace.checkLogin = function(userName, password) {
         	CommonNamespace.stopLoader();
         }
     });
+};
+
+
+CommonNamespace.formatEventsCalDate = function(date,mode){
+	 var d = new Date(date),
+     month = '' + (d.getMonth() + 1),
+     day = '' + d.getDate(),
+     year = d.getFullYear();
+
+	 if (month.length < 2) month = '0' + month;
+	 if (day.length < 2) day = '0' + day;
+	
+	 if(mode === "disp"){
+		 return [day, month, year].join('-');
+	 }else{
+		 return [year, month, day].join('-');
+	 }
 };
 
 //Function to handle ajax GET request

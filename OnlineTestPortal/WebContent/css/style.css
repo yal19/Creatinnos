@@ -257,7 +257,7 @@ body {
     cursor: pointer;
 }
 .examList:hover{
-	background:#80bca314;
+	background:#e7dfc64a;
 }
 .dashboardSec{
 	margin-bottom:20px;
@@ -490,6 +490,91 @@ width:100%;
     color: #b50d0d;
     cursor:pointer;
 }
+
+/* Switch */
+.modeCol{
+	    display: inline;
+    float: right;
+        position: relative;
+    top: 2px;
+}
+
+.switch {
+    width: 130px;
+    height: 32px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+    background: #fff;
+    border: 2px solid #4e3528;
+    margin-right: 10px;
+    display: inline-block;
+}
+.switch > span.on {
+    color: #FFF;
+    transition: color ease-in 0.23s 0.09s;
+    -moz-transition: color ease-in 0.23s 0.09s;
+    -webkit-transition: color ease-in 0.23s 0.09s;
+}
+.switch > span {
+    width: 70px;
+    height: 28px;
+    display: table-cell;
+    position: relative;
+    z-index: 100;
+    text-align: center;
+    vertical-align: middle;
+    color: #e7dfc6;
+    cursor: pointer;
+    transition: color ease-in 0.23s 0.09s;
+    -moz-transition: color ease-in 0.23s 0.09s;
+    -webkit-transition: color ease-in 0.23s 0.09s;
+}
+.switch .switch_bg {
+	width: 73px;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: -11px;
+	transform: skew(-30deg);
+	-moz-transform: skew(-30deg);
+	-webkit-transform: skew(-30deg);
+	transition: all ease-in 0.23s;
+	-moz-transition: all ease-in 0.23s;
+	-webkit-transition: all ease-in 0.23s;
+	background: #4e3528;
+	box-shadow: 0px 0px 3px 1px #000000;
+}
+.switch .right{
+    left: 65px;
+    transition: all ease-in 0.23s;
+    -moz-transition: all ease-in 0.23s;
+    -webkit-transition: all ease-in 0.23s;
+}
+.radio_btns{
+  display: none;
+}
+.switch span {
+      width: 100px;
+      height: 30px;
+      display: table-cell;
+      position: relative;
+      z-index: 100;
+      text-align: center;
+      vertical-align: middle;
+      color: #4e3528;
+      cursor: pointer;
+      transition: color ease-in 0.23s 0.09s;
+      -moz-transition: color ease-in 0.23s 0.09s;
+      -webkit-transition: color ease-in 0.23s 0.09s;
+}
+.on {
+        color: #fff;
+        transition: color ease-in 0.23s 0.09s;
+        -moz-transition: color ease-in 0.23s 0.09s;
+        -webkit-transition: color ease-in 0.23s 0.09s;
+    }
+
 @media (min-width:240px) and (max-width:700px) {
 	.sectionHeading {
     font-size: 15px;
